@@ -1,0 +1,61 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<section id="login">
+    <div class="container">
+                <div class="form-wrap">
+                    <form novalidate autocomplete="off" #myForm="ngForm" (ngSubmit)="addMovie(myForm.value)">
+                        <h1>Add a Movie</h1>
+                        
+                        <div class="form-group">
+                        <input type="text" class="form-control" #refF='ngModel' [(ngModel)]="movieModel.movieName" required placeholder="Enter Movie Name" name="movieName">
+                         <div *ngIf="refF.errors && (refF.dirty || refF.touched)" class="alert alert-danger">
+                                <div [hidden]="!refF.errors.required">
+                                    Movie Name is required.
+                                </div>
+                         </div>
+                        <br>
+                        </div>
+                      <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="movieModel.dateOfRelease" placeholder="Enter Date of Release" required name="dateOfRelease" #refL='ngModel'> 
+                        <div *ngIf="refL.errors && (refL.dirty || refL.touched)" class="alert alert-danger">
+                                <div [hidden]="!refL.errors.required">
+                                    Date of release is required.
+                                </div>
+                        </div>
+                        <br>
+                      </div>
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Enter movie rating" [(ngModel)]=movieModel.rating name="rating" required #refRating='ngModel'>
+                        <div *ngIf="refRating.errors && (refRating.dirty || refRating.touched)" class="alert alert-danger">
+                                <div [hidden]="!refRating.errors.required">
+                                    Rating is required.
+                                </div>
+                        </div>
+                        <br>
+                      </div>
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Enter description" [(ngModel)]=movieModel.description name="description" #refId='ngModel'>
+                        
+                      </div>
+                    <div class="paragraph">
+                       <strong> <p>By clicking Create my Account you agree to our terms and that you have read our Data Use Policy including Cookie Use</p></strong>
+                    </div>
+                        
+                        <input type="submit" id="btn-login" class="btn btn-custom btn-block" value="Submit" [disabled]="myForm.invalid">
+                    
+                    </form>
+                    <hr>
+                
+            </div>
+            <!-- /.col-xs-12 -->
+        
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>
+<hr/>
+<div *ngIf="movieList.length>0">
+    <app-movie-list [movieDetail]="movieList"></app-movie-list>
+               
+</div>               
+               
+
